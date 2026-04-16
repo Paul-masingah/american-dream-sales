@@ -5,6 +5,9 @@
 
 import { MetadataRoute } from 'next';
 
+// Static export configuration
+export const dynamic = 'force-static';
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://americandream.com';
 
