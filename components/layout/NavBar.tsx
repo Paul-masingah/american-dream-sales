@@ -53,29 +53,39 @@ export function NavBar() {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-8">
             {NAV_ITEMS.map((item) => (
-              <a
-                key={item.section}
-                href={item.href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  handleNavClick(item.section);
-                }}
-                className={cn(
-                  'font-label text-xs tracking-wider uppercase transition-colors relative py-2',
-                  activeSection === item.section
-                    ? 'text-[var(--color-gold)]'
-                    : 'text-white/70 hover:text-white'
-                )}
-              >
-                {item.label}
-                {activeSection === item.section && (
-                  <motion.div
-                    layoutId="activeSection"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-[var(--color-gold)]"
-                    transition={{ duration: 0.3 }}
-                  />
-                )}
-              </a>
+              <div key={item.section} className="relative group">
+                <a
+                  href={item.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(item.section);
+                  }}
+                  className={cn(
+                    'font-label text-xs tracking-wider uppercase transition-colors relative py-2 block',
+                    activeSection === item.section
+                      ? 'text-[var(--color-gold)]'
+                      : 'text-white/70 hover:text-white'
+                  )}
+                  aria-label={`Navigate to ${item.label} section`}
+                >
+                  {item.label}
+                  {activeSection === item.section && (
+                    <motion.div
+                      layoutId="activeSection"
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-[var(--color-gold)]"
+                      transition={{ duration: 0.3 }}
+                    />
+                  )}
+                </a>
+
+                {/* Tooltip */}
+                <div
+                  className="absolute left-1/2 -translate-x-1/2 top-full mt-2 px-2 py-1 bg-[var(--color-gray-900)] border border-[var(--color-gold)] rounded text-[var(--color-gold)] font-label text-xs whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-[var(--z-tooltip)]"
+                  role="tooltip"
+                >
+                  {item.label}
+                </div>
+              </div>
             ))}
           </div>
 

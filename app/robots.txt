@@ -1,0 +1,8 @@
+# American Dream - Robots.txt
+# https://americandream.com/robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://americandream.com/sitemap.xml
